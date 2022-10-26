@@ -3,3 +3,4 @@ from imdb.models import *
 
 # Register your models here.
 admin.site.register(Genre)
+admin.site.register(Movie)
