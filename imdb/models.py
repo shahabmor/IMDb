@@ -1,5 +1,4 @@
 from django.db import models
-import pillow
 
 # Create your models here.
 class Genre(models.Model):
