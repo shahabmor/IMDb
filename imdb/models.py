@@ -30,3 +30,9 @@ class Movie(models.Model):
     avatar = models.ImageField(upload_to='movies/', null=True, blank=True)
     genres = models.ManyToManyField(Genre)
     crew = models.ManyToManyField(Crew)
+
+class MovieCrew(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    crew = models.ForeignKey(Crew, on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    join_date = models.DateField(null=True)
