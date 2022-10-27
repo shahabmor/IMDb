@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Genre(models.Model):
     name = models.CharField(max_length=50)
@@ -29,7 +30,8 @@ class Movie(models.Model):
     release_date = models.DateField(null=True)
     avatar = models.ImageField(upload_to='movies/', null=True, blank=True)
     genres = models.ManyToManyField(Genre)
-    crew = models.ManyToManyField(Crew)
+    crew = models.ManyToManyField(Crew, through='MovieCrew')
+
 
 class MovieCrew(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
