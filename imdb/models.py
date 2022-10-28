@@ -8,6 +8,9 @@ class Genre(models.Model):
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Role(models.Model):
     title = models.CharField(max_length=50)
@@ -15,6 +18,8 @@ class Role(models.Model):
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)
 
+    def __str__(self):
+        return self.title
 
 class Crew(models.Model):
     MALE = 1
@@ -32,6 +37,9 @@ class Crew(models.Model):
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 class Movie(models.Model):
     title = models.CharField(max_length=100)
@@ -44,6 +52,8 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, null=True)
     crew = models.ManyToManyField(Crew, through='MovieCrew')
 
+    def __str__(self):
+        return self.title
 
 class MovieCrew(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
