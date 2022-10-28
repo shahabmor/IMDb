@@ -36,12 +36,12 @@ class Crew(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    release_date = models.DateField(null=True)
+    release_date = models.DateField(null=True, blank=True)
     avatar = models.ImageField(upload_to='movies/', null=True, blank=True)
     is_valid = models.BooleanField(default=True)
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)
-    genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre, null=True)
     crew = models.ManyToManyField(Crew, through='MovieCrew')
 
 
