@@ -1,5 +1,5 @@
 from django.contrib import admin
-from imdb.models import *
+from movies.models import *
 
 
 # Register your models here.
