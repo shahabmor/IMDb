@@ -20,21 +20,25 @@
 <body>
 <div class="main container">
 
-    {% if is_valid == True%}
-    <h6>Username: {{ user }}</h6>
-    {% endif %}
-
     <h2 class="title">IMBd Movies</h2>
+
+    {% if is_valid == True%}
+    <h6>Username: {{ user|title }}</h6>
+    {% endif %}
+    <br><br>
 
     <div class="content">
         <div class="row">
 
-
-            <div class="col-sm-4 card title">
+            {% for movie in movies %}
+            <div class="col-sm-3 card title">
+            <a href={% url "movie_detail" movie.id %}>
                 <img src="" alt="Movie Image">
-                <h4>movie 1</h4>
+            </a>
+                <h4>{{ movie }}</h4>
+                <p>{{ movie.description }}</p>
             </div>
-
+            {% endfor %}
 
         </div>
     </div>

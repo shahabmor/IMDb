@@ -21,6 +21,7 @@ class Role(models.Model):
     def __str__(self):
         return self.title
 
+
 class Crew(models.Model):
     MALE = 1
     FEMALE = 0
@@ -54,6 +55,7 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class MovieCrew(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
