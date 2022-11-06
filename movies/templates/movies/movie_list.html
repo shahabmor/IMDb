@@ -11,7 +11,13 @@
 
     <style>
         .title {
+            margin: 1px;
             text-align: center;
+        }
+
+        .avatar {
+            margin-top: 5px;
+            width: 90%
         }
     </style>
 </head>
@@ -31,9 +37,10 @@
         <div class="row">
 
             {% for movie in movies %}
+
             <div class="col-sm-3 card title">
             <a href={% url "movie_detail" movie.id %}>
-                <img src="" alt="Movie Image">
+                <img src="{{ movie.avatar.url }}" alt="Movie Image" class="avatar">
             </a>
                 <h4>{{ movie }}</h4>
                 <p>{{ movie.description }}</p>
