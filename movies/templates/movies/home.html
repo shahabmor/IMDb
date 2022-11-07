@@ -8,23 +8,26 @@
 <div>
 
     <div class="row">
+
     <div class="col-sm-6" style="text-align: left; padding: 1%; padding-left: 4%">
         <h3>Home Page</h3>
-
     </div>
+
     <div class="col-sm-6" style="text-align: right; padding: 1%">
         {% if is_valid == True%}
             <h6>Username: {{ user|title }}</h6>
         {% endif %}
     </div>
 
-
     </div>
+
 
     <div class="row">
 
     <div class="col-sm-9 content">
-        <h3>Suggested Movies</h3>
+
+        <h4>Suggested Movies</h4>
+
         <div class="row">
 
             {% for movie in movies %}
@@ -42,9 +45,10 @@
             {% endfor %}
 
         </div>
+
     </div>
 
-    <div class="col-sm-3" style="text-align: center">
+    <div class="col-sm-3 news">
         <h5>News</h5>
     </div>
 

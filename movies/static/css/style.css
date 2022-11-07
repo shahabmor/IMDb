@@ -12,7 +12,7 @@ a:hover {
 
 .logo {
     width: 12%;
-    height: 8%;
+    height:20%;
 }
 
 .search_input {
@@ -28,4 +28,10 @@ a:hover {
 
 .content{
     scale: 90%;
+}
+
+.news{
+    text-align: center;
+    border: medium;
+    border-color: #555555;
 }
