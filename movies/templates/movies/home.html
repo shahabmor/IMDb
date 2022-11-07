@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Home {% endblock %}IMDb
+
+{% block body %}
+<div>
+
+    <div class="row">
+    <div class="col-sm-6" style="text-align: left; padding: 1%; padding-left: 4%">
+        <h3>Home Page</h3>
+
+    </div>
+    <div class="col-sm-6" style="text-align: right; padding: 1%">
+        {% if is_valid == True%}
+            <h6>Username: {{ user|title }}</h6>
+        {% endif %}
+    </div>
+
+
+    </div>
+
+    <div class="row">
+
+    <div class="col-sm-9 content">
+        <h3>Suggested Movies</h3>
+        <div class="row">
+
+            {% for movie in movies %}
+
+            <div class="col-sm-2 m-1 card movie_cart">
+            <a href={% url "movie_detail" movie.id %}>
+                <img src="{{ movie.avatar.url }}" alt="Movie Image" class="avatar">
+            </a>
+                <br>
+                <h6>{{ movie|title }}</h6>
+                <hr>
+                <p>{{ movie.description }}</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="col-sm-3" style="text-align: center">
+        <h5>News</h5>
+    </div>
+
+    </div>
+</div>
+{% endblock %}

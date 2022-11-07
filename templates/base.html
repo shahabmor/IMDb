@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %} IMDb {% endblock %}IMDb</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Shahab Moradi">
+    <meta http-equiv="refresh" content="30">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Importing CSS file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!--Import icon-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Designing the navbar -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <div class="container-fluid">
+    <!--Logo-->
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'movies/logo2.png' %}" alt="Logo" class="logo">
+        </a>
+    </div>
+
+    <!--Search-->
+    <div class="container-fluid search_input">
+    <form class="d-flex">
+        <input class="form-control me-2" type="text" placeholder="Search">
+        <button type="button" class="bg-dark" style="border: none">
+        <i class="material-icons" style="font-size:48px;color:#8c7714">search</i>
+        </button>
+    </form>
+    </div>
+
+    <!-- List -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Series</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">News</a>
+      </li>
+
+    <!--Drop Down-->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Sign in</a></li>
+        <li><a class="dropdown-item" href="#">Login</a></li>
+        <li><a class="dropdown-item" href="#">Log out</a></li>
+        </ul>
+    </li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<!--content-->
+<div style="background-color: #d0d0d0">
+    {% block body %}{% endblock %}
+</div>
+
+<footer class="bg-dark" style="color: #555555">
+    <hr>
+    <h5 class="m-1">Contacts</h5>
+    <p class="m-1">email: shahab.m.90@gmail.com</p>
+</footer>
+
+</body>
+</html>

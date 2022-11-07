@@ -1,15 +1,31 @@
-.title {
-    margin: 1px;
-    text-align: center;
+a:hover {
+    opacity: 80%;
+    scale: 105%;
 }
 
-.logo{
+.movie_cart {
+    padding: 5px;
     text-align: center;
-    width: 10%;
-    height: 5%;
+    background-color: #373838;
+    color: #868686;
+}
+
+.logo {
+    width: 12%;
+    height: 8%;
+}
+
+.search_input {
+    scale: 70%;
 }
 
 .avatar {
     margin-top: 5px;
-    width: 90%
+    width: 90%;
+    height: 200px;
+}
+
+
+.content{
+    scale: 90%;
 }

@@ -13,7 +13,7 @@ def movie_list(request):
         "is_valid": True
     }
 
-    return render(request, 'movies/movie_list.html', context=content)
+    return render(request, 'movies/home.html', context=content)
 
 
 def movie_detail(request, pk):

@@ -1,0 +1,18 @@
+.title {
+    margin: 1px;
+    text-align: center;
+}
+
+.logo {
+    width: 10%;
+    height: 5%;
+}
+
+.avatar {
+    margin-top: 5px;
+    width: 90%
+}
+
+#nav_list {
+    text-align: right;
+}
