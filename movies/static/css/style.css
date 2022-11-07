@@ -1,0 +1,15 @@
+.title {
+    margin: 1px;
+    text-align: center;
+}
+
+.logo{
+    text-align: center;
+    width: 10%;
+    height: 5%;
+}
+
+.avatar {
+    margin-top: 5px;
+    width: 90%
+}

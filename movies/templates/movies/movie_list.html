@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +11,17 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-        .title {
-            margin: 1px;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-        .avatar {
-            margin-top: 5px;
-            width: 90%
-        }
-    </style>
 </head>
 
 
 <body>
 <div class="main container">
 
-    <h2 class="title">IMBd Movies</h2>
+    <h2 class="logo">
+        <img src='{% static 'movies/logo.png' %}' alt="Logo">
+    </h2>
 
     {% if is_valid == True%}
     <h6>Username: {{ user|title }}</h6>
