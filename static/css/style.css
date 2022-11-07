@@ -1,18 +1,43 @@
-.title {
-    margin: 1px;
+a:hover {
+    opacity: 80%;
+    scale: 105%;
+}
+
+.movie_cart {
+    padding: 5px;
     text-align: center;
+    background-color: #373838;
+    color: #868686;
 }
 
 .logo {
-    width: 10%;
-    height: 5%;
+    width: 12%;
+    height:20%;
+}
+
+.search_input {
+    scale: 70%;
 }
 
 .avatar {
     margin-top: 5px;
-    width: 90%
+    width: 90%;
+    height: 200px;
 }
 
-#nav_list {
-    text-align: right;
+
+.content{
+    scale: 95%;
+}
+
+#news {
+    color: black;
+    background-color: #555555;
+    scale: 85%;
+}
+
+#movie_desc{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
 }

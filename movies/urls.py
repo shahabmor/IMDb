@@ -6,8 +6,8 @@ from django.conf.urls.static import static
 from .views import *
 
 urlpatterns = [
-    path("movies/", movie_list, name='movie_list'),
-    path('movie/<int:pk>', movie_detail, name='movie_detail')
+    path("movies/", movie_list, name='home'),
+    path('movie/<int:pk>', movie_detail, name='movie_detail'),
 ]
 
 if settings.DEBUG:

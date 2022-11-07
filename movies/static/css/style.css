@@ -27,11 +27,21 @@ a:hover {
 
 
 .content{
-    scale: 90%;
+    scale: 95%;
 }
 
-.news{
-    text-align: center;
-    border: medium;
-    border-color: #555555;
+#news {
+    color: black;
+    background-color: #555555;
+    scale: 85%;
+}
+
+#movie_desc{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: justify;
+}
+
+#crew_pic {
+    height: 100px;
 }

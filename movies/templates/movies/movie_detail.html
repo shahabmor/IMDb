@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ movie }} {% endblock %}IMDb
+{% block page_name %}{{ movie|title }}{% endblock %}
+
+{% block body %}
+
+    <div class="row" id="movie_desc">
+        <div>
+            <p>{{ movie.description }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6" style="scale: 95%">
+            <hr>
+            <h4>Movie Cast:</h4>
+            <br>
+
+            {% for crew in crew %}
+            <div class="row">
+
+                <div class="col-sm-4" style="text-align: center">
+                    <h5>{{ crew.crew.first_name|title }} {{ crew.crew.last_name|title }}</h5>
+                    <div>
+                        <img src="{{ crew.crew.avatar.url }}" class="avatar rounded-circle">
+                    </div>
+                    <br><br>
+                </div>
+
+                <div class="col-sm-8 text-center">
+                    <h5>{{ crew.role}}</h5>
+                    <p style="text-align: justify">
+                        {{ crew.crew.description }}
+                    </p>
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-sm-6 text-center">
+            <br>
+            <h4>Movie Scene</h4>
+        </div>
+
+    </div>
+
+{% endblock %}

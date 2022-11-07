@@ -1,26 +1,11 @@
 {% extends 'base.html' %}
-{% load static %}
 
 
 {% block title %} Home {% endblock %}IMDb
+{% block page_name %}Home Page{% endblock %}
 
 {% block body %}
 <div>
-
-    <div class="row">
-
-    <div class="col-sm-6" style="text-align: left; padding: 1%; padding-left: 4%">
-        <h3>Home Page</h3>
-    </div>
-
-    <div class="col-sm-6" style="text-align: right; padding: 1%">
-        {% if is_valid == True%}
-            <h6>Username: {{ user|title }}</h6>
-        {% endif %}
-    </div>
-
-    </div>
-
 
     <div class="row">
 
@@ -39,7 +24,7 @@
                 <br>
                 <h6>{{ movie|title }}</h6>
                 <hr>
-                <p>{{ movie.description }}</p>
+                <p>Imdb score</p>
             </div>
 
             {% endfor %}
@@ -48,8 +33,9 @@
 
     </div>
 
-    <div class="col-sm-3 news">
+    <div class="col-sm-3 card" id="news">
         <h5>News</h5>
+        <hr>
     </div>
 
     </div>
