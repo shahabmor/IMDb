@@ -7,6 +7,8 @@
 
     <div class="row" id="movie_desc">
         <div>
+            <h5>Imdb Score: {{ movie.imdb_score }}</h5>
+            <br>
             <p>{{ movie.description }}</p>
         </div>
     </div>
@@ -32,6 +34,7 @@
                     <h5>{{ crew.role}}</h5>
                     <p style="text-align: justify">
                         {{ crew.crew.description }}
+                        <hr><br>
                     </p>
                 </div>
 

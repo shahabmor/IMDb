@@ -40,6 +40,11 @@
                     <div class="row">
                     </div>
                         <h5>Imdb Score:</h5>
+                        {% if movie.imdb_score %}
+                            <p>{{ movie.imdb_score }}/10</p>
+                        {% else %}
+                            <p>--/10</p>
+                        {% endif %}
                     </div>
 
                 </div>
