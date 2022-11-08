@@ -9,12 +9,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Shahab Moradi">
-    <meta http-equiv="refresh" content="30">
+
 
     <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Importing CSS file -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -39,9 +40,10 @@
 
     <!--Search-->
     <div class="container-fluid search_input">
-    <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button type="button" class="bg-dark" style="border: none">
+    <form class="d-flex" action="{% url 'search' %}" method="post">
+        {% csrf_token %}
+        <input class="form-control me-2" type="text" placeholder="Search" name="search_item">
+        <button type="submit" class="bg-dark" style="border: none">
         <i class="material-icons" style="font-size:48px;color:#8c7714">search</i>
         </button>
     </form>
@@ -75,13 +77,14 @@
 </nav>
 
 <!--page name & username-->
-<div class="row" style="background-color: #d0d0d0; scale: 98.3%;">
+<div class="row" style="background-color: #d0d0d0">
 
-    <div class="col-sm-6" style="text-align: left; padding-left: 4%">
-        <h3>{% block page_name %}{% endblock %}</h3>
+    <div class="col-sm-6" style="text-align: left;padding: 2%">
+        <h2>{% block page_name %}{% endblock %}</h2>
+        <hr>
     </div>
 
-    <div class="col-sm-6" style="text-align: right">
+    <div class="col-sm-6" style="text-align: right; padding: 1%; padding-right: 2%">
         {% if is_valid == True%}
             <h6>Username: {{ user|title }}</h6>
         {% endif %}

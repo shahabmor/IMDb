@@ -8,6 +8,7 @@ from .views import *
 urlpatterns = [
     path("movies/", movie_list, name='home'),
     path('movie/<int:pk>', movie_detail, name='movie_detail'),
+    path('movies/search/', movie_search, name='search'),
 ]
 
 if settings.DEBUG:

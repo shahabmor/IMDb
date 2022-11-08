@@ -18,13 +18,22 @@ def movie_list(request):
 
 def movie_detail(request, pk):
     movie = Movie.objects.get(id=pk)
-    crew = movie.crew.all()
 
     content = {
         'movie': movie,
         'crew': movie.moviecrew_set.all(),
-        'role': "",
         "user": "shahab",
         "is_valid": True
     }
     return render(request, 'movies/movie_detail.html', context=content)
+
+
+def movie_search(request):
+    item = request.POST.get('search_item')
+    movies = Movie.objects.filter(title__contains=item)
+
+    content = {
+        "movies": movies,
+    }
+    return render(request, 'movies/search.html', context=content)
+
