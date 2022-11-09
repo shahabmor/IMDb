@@ -29,7 +29,7 @@ def movie_detail(request, pk):
 
 
 def movie_search(request):
-    item = request.POST.get('search_item')
+    item = request.POST.get('search_item').strip()
     movies = Movie.objects.filter(title__contains=item)
 
     content = {
