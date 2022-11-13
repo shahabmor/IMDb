@@ -53,7 +53,7 @@ class Movie(models.Model):
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)
     genres = models.ManyToManyField(Genre)
-    crew = models.ManyToManyField(Crew, through='MovieCrew')
+    crew = models.ManyToManyField(Crew, through='MovieCrew', related_name='movies')
 
     def __str__(self):
         return self.title

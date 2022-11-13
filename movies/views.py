@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 
 from movies.models import Movie
-
+from movies.forms import MovieForm
 
 # Create your views here.
 
@@ -14,6 +14,17 @@ def movie_list(request):
     }
 
     return render(request, 'movies/home.html', context=content)
+
+
+def all_movies(request):
+    movies = Movie.objects.all()
+    content = {
+        "movies": movies,
+        "user": "shahab",
+        "is_valid": True
+    }
+
+    return render(request, 'movies/all_movie.html', context=content)
 
 
 def movie_detail(request, pk):

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Movies{% endblock %}IMDb
+{% block page_name %}All Movies{% endblock %}
+
+{% block body %}
+<div>
+
+    <div class="row">
+
+    <div class="col-sm-9 content">
+
+        <div class="row">
+            {% for movie in movies %}
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <a href={% url "movie_detail" movie.id %}>
+                            <div class="row searched_movies mx-auto d-block">
+                                <img src="{{ movie.avatar.url }}" alt="Movie Image" style="scale: 90%">
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-8">
+                    <br>
+                    <h3>{{ movie }}</h3>
+
+                    <br>
+                    <div class="row">
+                    <P style="text-align: justify">
+                        {{ movie.description }}
+                    </P>
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+                    </div>
+                        <h5>Imdb Score:</h5>
+                        {% if movie.imdb_score %}
+                            <p>{{ movie.imdb_score }}/10</p>
+                        {% else %}
+                            <p>--/10</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <hr>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div class="col-sm-3 card" id="news">
+        <h5>News</h5>
+        <hr>
+    </div>
+
+    </div>
+</div>
+{% endblock %}
