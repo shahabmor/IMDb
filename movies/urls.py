@@ -9,6 +9,7 @@ urlpatterns = [
     path("all_movies/", all_movies, name='all_movies'),
     path('movie/<int:pk>', movie_detail, name='movie_detail'),
     path('movies/search/', movie_search, name='search'),
+    path('movie/add/', add_movie, name='add_movie'),
 ]
 
 if settings.DEBUG:

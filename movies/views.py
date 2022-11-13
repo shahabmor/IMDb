@@ -48,3 +48,16 @@ def movie_search(request):
     }
     return render(request, 'movies/search.html', context=content)
 
+
+def add_movie(request):
+    if request.method == 'GET':
+        form = MovieForm()
+        ctx = {
+            'form': form
+        }
+        return render(request, 'movies/add_movie.html', context=ctx)
+
+    elif request.method == "POST":
+        post = MovieForm(request.POST)
+
+
