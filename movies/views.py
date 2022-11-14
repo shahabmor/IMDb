@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 
 from movies.models import Movie
 from movies.forms import MovieForm
@@ -58,6 +58,11 @@ def add_movie(request):
         return render(request, 'movies/add_movie.html', context=ctx)
 
     elif request.method == "POST":
-        post = MovieForm(request.POST)
+        post = MovieForm(request.POST, request.FILES, instance=Movie)
+        if post.is_valid:
+            post.save()
+            return redirect('all_movies')
+
+        return render(request, 'movies/add_movie.html', context=post)
 
 

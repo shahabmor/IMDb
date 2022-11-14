@@ -6,12 +6,9 @@
 
 {% block body %}
     <form method="post" action={% url 'all_movies' %}>
-    {% for field in form %}
-        <div style="margin-left: 5px;">
-        {{ field }}
-        </div>
-        <br>
+    {% csrf_token %}
 
-    {% endfor %}
+
+    <button type="submit" class="btn btn-secondary" style="margin-left: 5px">Add New Movie</button>
     </form>
 {% endblock %}
