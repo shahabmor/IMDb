@@ -13,7 +13,7 @@ class Genre(models.Model):
 
 
 class Role(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, null=True)
     is_valid = models.BooleanField(default=True)
     created_time = models.DateField(auto_now_add=True, null=True)
     modified_time = models.DateField(auto_now=True)

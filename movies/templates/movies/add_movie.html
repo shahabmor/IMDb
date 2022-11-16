@@ -5,7 +5,8 @@
 {% block page_name %}Add Movie{% endblock %}
 
 {% block body %}
-    <form method="post" action={% url 'all_movies' %}>
+
+    <form method="post" enctype="multipart/form-data" action={% url 'all_movies' %}>
     {% csrf_token %}
     {% for field in form %}
         <div style="margin-left: 20px;" class = "col-sm-4">
@@ -13,8 +14,11 @@
         {{ field }}
         </div>
         <br>
-        {% endfor %}
 
-    <button type="submit" class="btn btn-secondary" style="margin-left: 5px">Add New Movie</button>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-secondary m-4">Add New Movie</button>
+
     </form>
+
 {% endblock %}
