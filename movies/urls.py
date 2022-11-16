@@ -10,6 +10,8 @@ urlpatterns = [
     path('movie/<int:pk>', movie_detail, name='movie_detail'),
     path('movies/search/', movie_search, name='search'),
     path('movie/add/', add_movie, name='add_movie'),
+    path('movie/<int:pk>/edit/', edit_movie, name='edit_movie'),
+    path('movie/<int:pk>/delete/', delete_movie, name='delete_movie'),
 ]
 
 if settings.DEBUG:
