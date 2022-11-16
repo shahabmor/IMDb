@@ -50,3 +50,8 @@ a:hover {
     background-color: #d0d0d0;
 }
 
+.login {
+    text-align: center;
+    background-color: #373838;
+    color: #868686;
+}

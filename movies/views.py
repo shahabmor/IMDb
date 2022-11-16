@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
 
 from .models import Movie
 from .forms import MovieForm
@@ -7,7 +8,7 @@ from .forms import MovieForm
 # Create your views here.
 
 def movie_list(request):
-    movies = Movie.objects.filter(is_valid=True)[:10]
+    movies = Movie.valid.all()[:10]
     content = {
         "movies": movies,
         "user": "shahab",
@@ -19,7 +20,7 @@ def movie_list(request):
 
 def all_movies(request):
 
-    movies = Movie.objects.filter(is_valid=True)
+    movies = Movie.valid.all()
     content = {
         "movies": movies,
         "user": "shahab",
@@ -29,6 +30,7 @@ def all_movies(request):
     if request.method == 'GET':
         return render(request, 'movies/all_movie.html', context=content)
 
+    # add movie if request.method == 'post'
     elif request.method == "POST":
         post = MovieForm(request.POST, request.FILES)
         if post.is_valid():
@@ -40,6 +42,7 @@ def all_movies(request):
 
 
 def movie_detail(request, pk):
+
     movie = get_object_or_404(Movie, pk=pk, is_valid=True)
     content = {
         'movie': movie,
@@ -52,6 +55,7 @@ def movie_detail(request, pk):
 
         return render(request, 'movies/movie_detail.html', context=content)
 
+    # edit movie if request.method == 'post'
     elif request.method == 'POST':
         edited_movie = MovieForm(request.POST, request.FILES, instance=movie)
         if edited_movie.is_valid():
@@ -64,7 +68,7 @@ def movie_detail(request, pk):
 
 def movie_search(request):
     item = request.POST.get('search_item').strip()
-    movies = Movie.objects.filter(title__contains=item, is_valid=True)
+    movies = Movie.valid.filter(title__contains=item)
 
     content = {
         "movies": movies,
@@ -98,6 +102,18 @@ def delete_movie(request, pk):
     movie.save()
 
     return redirect('all_movies')
+
+
+def log_in(request):
+    content = request.POST
+    username = content.get('username')
+    password = content.get('password')
+
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        return redirect('home')
+    return render(request, 'movies/login.html')
+
 
 
 

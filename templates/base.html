@@ -1,5 +1,7 @@
 {% load static %}
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +30,7 @@
 <body>
 
 <!-- Designing the navbar -->
+{% block navbar %}
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
   <div class="container-fluid">
@@ -49,32 +52,36 @@
     </form>
     </div>
 
+
     <!-- List -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href={% url 'all_movies' %}>Movies</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Series</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">News</a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href={% url 'all_movies' %}>Movies</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Series</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">News</a>
+        </li>
 
-    <!--Drop Down-->
-    <li class="nav-item dropdown" style="margin-right: 20px">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
-        <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Sign up</a></li>
-        <li><a class="dropdown-item" href="#">Login</a></li>
-        <li><a class="dropdown-item" href="#">Logout</a></li>
-        </ul>
-    </li>
+        <!--Drop Down-->
+        <li class="nav-item dropdown" style="margin-right: 20px">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
+            <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Sign up</a></li>
+            <li><a class="dropdown-item" href="#">Login</a></li>
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+        </li>
+
+
     </ul>
 
   </div>
 
 </nav>
+{% endblock %}
 
 
 

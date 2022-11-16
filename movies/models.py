@@ -2,6 +2,12 @@ from django.db import models
 
 
 # Create your models here.
+
+class ValidManager(models.Manager):
+    def get_queryset(self):
+        return super(ValidManager, self).get_queryset().filter(is_valid=True)
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=50)
     is_valid = models.BooleanField(default=True)
@@ -54,6 +60,9 @@ class Movie(models.Model):
     modified_time = models.DateField(auto_now=True)
     genres = models.ManyToManyField(Genre)
     crew = models.ManyToManyField(Crew, through='MovieCrew', related_name='movies')
+
+    objects = models.Manager()
+    valid = ValidManager()
 
     def __str__(self):
         return self.title
