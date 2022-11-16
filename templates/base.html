@@ -62,12 +62,12 @@
       </li>
 
     <!--Drop Down-->
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown" style="margin-right: 20px">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
         <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Sign in</a></li>
+        <li><a class="dropdown-item" href="#">Sign up</a></li>
         <li><a class="dropdown-item" href="#">Login</a></li>
-        <li><a class="dropdown-item" href="#">Log out</a></li>
+        <li><a class="dropdown-item" href="#">Logout</a></li>
         </ul>
     </li>
     </ul>
@@ -76,27 +76,30 @@
 
 </nav>
 
-<!--page name & username-->
-<div class="row" style="background-color: #d0d0d0">
 
-    <div class="col-sm-6" style="text-align: left;padding: 2%">
-        <h2>{% block page_name %}{% endblock %}</h2>
-        <hr>
-    </div>
-
-    <div class="col-sm-6" style="text-align: right; padding: 1%; padding-right: 2%">
-        {% if is_valid == True%}
-            <h6>Username: {{ user|title }}</h6>
-        {% endif %}
-    </div>
-
-</div>
 
 
 <!--content-->
 <div style="background-color: #d0d0d0">
+<!--page name & username-->
+    <div class="row">
+
+        <div class="col-sm-6" style="text-align: left;padding: 2%">
+            <h2>{% block page_name %}{% endblock %}</h2>
+            <hr>
+        </div>
+
+        <div class="col-sm-6" style="text-align: right; padding-top: 1%; padding-right: 2%">
+            {% if is_valid == True%}
+                <h6>Username: {{ user|title }}</h6>
+            {% endif %}
+        </div>
+
+    </div>
     <br>
+    <div class="row">
     {% block body %}{% endblock %}
+    </div>
 </div>
 
 <footer class="bg-dark" style="color: #555555">
