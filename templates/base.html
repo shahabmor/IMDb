@@ -70,7 +70,7 @@
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Profile</a>
             <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'account:user_register'%}">Sign up</a></li>
-            <li><a class="dropdown-item" href="#">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'account:user_login'%}">Login</a></li>
             <li><a class="dropdown-item" href="#">Logout</a></li>
             </ul>
         </li>
@@ -98,7 +98,7 @@
 
         <div class="col-sm-6" style="text-align: right; padding-top: 1%; padding-right: 2%">
             {% if is_valid == True%}
-                <h6>Username: {{ user|title }}</h6>
+                <h6>Username: {{ username }}</h6>
             {% endif %}
         </div>
 

@@ -5,7 +5,7 @@
 
 
 {% block body %}
-    <h2>Register user</h2>
+    <h2>Login User</h2>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -18,6 +18,6 @@
         <div style="margin-left: 20px;" class = "col-sm-4">
             {{ form.as_p }}
         </div>
-        <input type="submit"  class="btn btn-secondary m-4" value="Register">
+        <input type="submit" class="btn btn-secondary m-4" value="Login">
     </form>
 {% endblock %}

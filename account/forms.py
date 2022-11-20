@@ -26,8 +26,8 @@ class UserRegistrationForm(forms.Form):
             raise ValidationError('Password Must Match')
 
 
-class UserLoginForm(forms.ModelForm):
-    user_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+class UserLoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
