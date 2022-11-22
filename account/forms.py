@@ -1,19 +1,19 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, User
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 
 class UserRegistrationForm(forms.Form):
     user_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label='password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='conform password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='confirm password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     def clean_email(self):
         email = self.cleaned_data['email']
-        user = User.objects.filter(email=email).exists()
-        if user:
+        user = User.objects.filter().exists()
+        if user is None:
             raise ValidationError('This Email Already Exists')
         return email
 
@@ -24,6 +24,8 @@ class UserRegistrationForm(forms.Form):
 
         if pass1 and pass2 and pass1 != pass2:
             raise ValidationError('Password Must Match')
+
+        return cd
 
 
 class UserLoginForm(forms.Form):

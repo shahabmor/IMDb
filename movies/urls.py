@@ -1,18 +1,17 @@
 from django.conf import settings
 from django.urls import path
 from django.conf.urls.static import static
-
 from .views import *
 
 urlpatterns = [
-    path("movies/", movie_list, name='home'),
+    path('', movie_list, name='home'),
     path("all_movies/", all_movies, name='all_movies'),
     path('movie/<int:pk>', movie_detail, name='movie_detail'),
     path('movies/search/', movie_search, name='search'),
     path('movie/add/', add_movie, name='add_movie'),
     path('movie/<int:pk>/edit/', edit_movie, name='edit_movie'),
-    path('movie/<int:pk>/delete/', delete_movie, name='delete_movie'),
-    path('', log_in, name='login')
+    path('movie/<int:pk>/delete/', delete_movie, name='delete_movie')
+    # path('', log_in, name='login')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
