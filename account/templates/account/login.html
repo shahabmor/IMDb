@@ -13,11 +13,11 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <form action="" method="post" class="col-md-6" novalidate>
+    <form action="{% url 'account:user_login' %}" method="post" class="col-md-6" novalidate>
         {% csrf_token %}
         <div style="margin-left: 20px;" class = "col-sm-4">
             {{ form.as_p }}
         </div>
-        <input type="submit" class="btn btn-secondary m-4" value="Login">
+        <button type="submit" class="btn btn-secondary m-4" value="Login">Login</button>
     </form>
 {% endblock %}

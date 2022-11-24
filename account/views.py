@@ -1,7 +1,7 @@
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views import View
-from .forms import UserRegistrationForm, UserLoginForm, EditUserForm
+from .forms import UserRegistrationForm, UserLoginForm
 from .models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -13,7 +13,7 @@ class UserRegisterView(View):
 
     def get(self, request):
         form = self.form_class()
-        return render(request, self.template_name, {'form':form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -22,21 +22,7 @@ class UserRegisterView(View):
             User.objects.create_user(cd['user_name'], cd['email'], cd['password1'])
             messages.success(request, 'you are signed up successfully', 'success')
             return redirect('home')
-        return render(request, self.template_name, {'form':form})
-
-        user = User.objects.create_user(
-            username=form["user_name"],
-            email=form["email"],
-            password=form["password1"]
-        )
-        try:
-            if user.is_valid():
-                messages.success(request, 'you are signed up successfully', 'success')
-                return redirect('home')
-
-        except AttributeError:
-            return render(request, self.template_name, {'form':form})
-
+        return render(request, self.template_name, {'form': form})
 
 
 class UserLoginView(View):
@@ -49,19 +35,21 @@ class UserLoginView(View):
 
     def get(self, request):
         form = self.form_class
-        return render(request, self.template_name, {'form':form})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, username=cd['username'], password=cd['password'])
+            print(f"Clean data->   'username':{cd.get('username')}   'password:{cd.get('password')}")
+            user = authenticate(request, username=cd.get('username'), password=cd.get('password'))
+            print(f"User->  {user}")
             if user is not None:
                 login(request, user)
                 messages.success(request, 'you are logged in', 'success')
                 if self.next:
                     return redirect(self.next)
                 return redirect('home')
-            messages.error(request, 'username or password is wrong', 'warning')
-        return render(request, self.template_name, {'form':form})
 
+            messages.error(request, 'username or password is wrong', 'warning')
+        return render(request, self.template_name, {'form': form})

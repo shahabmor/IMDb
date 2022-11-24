@@ -13,7 +13,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <form action="{% url 'account:user_register' %}" method="post" class="col-md-6" novalidate>
+    <form action="" method="post" class="col-md-6" novalidate>
         {% csrf_token %}
         <div style="margin-left: 20px;" class = "col-sm-4">
             {{ form.as_p }}

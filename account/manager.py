@@ -12,12 +12,13 @@ class UserManager(BaseUserManager):
 
         else:
             user = self.model(
-                email=email,
                 username=username,
+                email=email,
             )
             user.set_password(password)
             user.is_valid = True
-            user.save()
+            user.is_active = True
+            user.save(using=self._db)
             return user
 
     def create_superuser(self, username, email, password=None):
@@ -30,5 +31,5 @@ class UserManager(BaseUserManager):
         user.is_active = True
         user.is_staff = True
         user.is_superadmin = True
-        user.save()
+        user.save(using=self._db)
         return user
