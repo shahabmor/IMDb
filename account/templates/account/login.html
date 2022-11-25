@@ -2,8 +2,6 @@
 {% load static %}
 
 
-
-
 {% block body %}
     <h2>Login User</h2>
     {% if messages %}
@@ -20,4 +18,12 @@
         </div>
         <input type="submit" class="btn btn-secondary m-4" value="Login">
     </form>
+     {% if user.is_active == False %}
+    <p>
+        dont have account?
+    <li><a class="btn btn-secondary m-4 " href="{% url 'account:user_register'%}">Sign up</a></li>
+
+    </p>
+
+    {% endif %}
 {% endblock %}

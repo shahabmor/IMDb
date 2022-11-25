@@ -17,6 +17,7 @@ class UserManager(BaseUserManager):
             )
             user.set_password(password)
             user.is_valid = True
+            user.is_active = True
             user.save()
             return user
 
