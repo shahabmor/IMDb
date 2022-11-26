@@ -11,7 +11,6 @@ urlpatterns = [
     path('movie/add/', add_movie, name='add_movie'),
     path('movie/<int:pk>/edit/', edit_movie, name='edit_movie'),
     path('movie/<int:pk>/delete/', delete_movie, name='delete_movie')
-    # path('', log_in, name='login')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

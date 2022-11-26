@@ -1,9 +1,8 @@
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate
 
 from .models import Movie
 from .forms import MovieForm
-
 
 # Create your views here.
 
@@ -23,7 +22,6 @@ def all_movies(request):
     movies = Movie.valid.all()
     content = {
         "movies": movies,
-        "user": "shahab",
         "is_valid": True
     }
 
@@ -46,8 +44,8 @@ def movie_detail(request, pk):
     movie = get_object_or_404(Movie, pk=pk, is_valid=True)
     content = {
         'movie': movie,
+        'comments': movie.comment.all(),
         'crew': movie.moviecrew_set.all(),
-        "user": "shahab",
         "is_valid": True
     }
 
@@ -104,15 +102,6 @@ def delete_movie(request, pk):
     return redirect('all_movies')
 
 
-def log_in(request):
-    content = request.POST
-    username = content.get('username')
-    password = content.get('password')
-
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        return redirect('home')
-    return render(request, 'movies/login.html')
 
 
 

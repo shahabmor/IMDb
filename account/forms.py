@@ -1,7 +1,6 @@
 from django import forms
 from .models import Profile, User
 from django.core.exceptions import ValidationError
-from django.conf import settings
 
 
 class UserRegistrationForm(forms.Form):

@@ -97,7 +97,7 @@
 
         <div class="col-sm-6" style="text-align: right; padding-top: 1%; padding-right: 2%">
             {% if is_valid == True%}
-                <h6>Username: {{ username }}</h6>
+                <h6>Username: {{ request.user.username }}</h6>
             {% endif %}
         </div>
 

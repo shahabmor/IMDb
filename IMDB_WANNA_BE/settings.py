@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'movies.apps.ImdbConfig',
     'account.apps.AccountConfig',
+    'comments.apps.CommentsConfig',
 ]
 
 MIDDLEWARE = [

@@ -19,7 +19,6 @@ class UserManager(BaseUserManager):
             user.is_valid = True
             user.is_active = True
             user.save(using=self._db)
-            user.save()
             return user
 
     def create_superuser(self, username, email, password=None):

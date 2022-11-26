@@ -5,8 +5,8 @@
 
 {% block body %}
 
-    <div class="row" id="movie_desc">
-        <div>
+    <div class="row">
+        <div style="text-align: justify">
             <h5>Imdb Score: {{ movie.imdb_score }} &#11088;</h5>
             <br>
             <p>{{ movie.description }}</p>
@@ -43,9 +43,61 @@
 
         </div>
 
-        <div class="col-sm-6 text-center">
+        <div class="col-sm-6 container" style="scale: 90%">
+            <h4>Comments</h4>
+            <hr>
             <br>
-            <h4>Movie Scene</h4>
+
+            {% if not comments.all %}
+                <p>There is no comment</p>
+            {% endif %}
+
+            {% for comment in comments %}
+                <h6>{{ comment.user.username }} :</h6>
+                    {{ comment.comment_body }}
+                <br>
+                {% if not comment.modified_time %}
+                    {{ comment.created_time}}
+
+                {% else %}
+                    {{ comment.modified_time }}
+                {% endif %}
+                <br>
+
+                <div class="row">
+                <div class="col-sm-9"></div>
+                <div class="col-sm-1">
+                <a href="{% url 'comment:movie-comments' comment.id%}">
+                    <div style="scale: 60%; text-align: right; color: #555555">
+                    <button class="btn btn-primary">Reply</button>
+                    </div>
+                </a>
+                </div>
+                <div class="col-sm-1">
+                <a href="#">
+                    <div style="scale: 60%; text-align: right; color: #555555">
+                    <button class="btn btn-primary">Edit</button>
+                    </div>
+                </a>
+                </div>
+
+                <div class="col-sm-1">
+                <a href="#">
+                    <div style="scale: 60%; text-align: right; color: darkred">
+                    <button class="btn btn-primary">Delete</button>
+                    </div>
+                </a>
+                </div>
+                </div>
+
+
+                <br><br>
+            {% endfor %}
+
+            <a href="{% url 'comment:add-comment' movie.id%}" style="text-align: right">
+                <button class="btn btn-primary">Add Comment</button>
+            </a>
+
         </div>
 
     </div>
