@@ -53,6 +53,7 @@
             {% endif %}
 
             {% for comment in comments %}
+                {% if comment.is_valid %}
                 <h6>{{ comment.user.username }} :</h6>
                     {{ comment.comment_body }}
                 <br>
@@ -64,51 +65,59 @@
                 {% endif %}
                 <br>
 
-                <div class="row">
-                <div class="col-sm-9"></div>
-                <div class="col-sm-1">
-                <a href="{% url 'comment:movie-comments' comment.id%}">
-                    <div style="scale: 60%; text-align: right; color: #555555">
-                    <button class="btn btn-primary">Reply</button>
+                {% if user_login %}
+                    <div class="row">
+                    <div class="col-sm-9"></div>
+                    <div class="col-sm-1">
+                    <a href="{% url 'comment:movie-comments' comment.id%}">
+                        <div style="scale: 60%; text-align: right">
+                        <button class="btn btn-primary">Reply</button>
+                        </div>
+                    </a>
                     </div>
-                </a>
-                </div>
-                <div class="col-sm-1">
-                <a href="#">
-                    <div style="scale: 60%; text-align: right; color: #555555">
-                    <button class="btn btn-primary">Edit</button>
+                    <div class="col-sm-1">
+                    <a href="{% url 'comment:edit_comment' comment.id%}">
+                        <div style="scale: 60%; text-align: right">
+                        <button class="btn btn-primary">Edit</button>
+                        </div>
+                    </a>
                     </div>
-                </a>
-                </div>
 
-                <div class="col-sm-1">
-                <a href="#">
-                    <div style="scale: 60%; text-align: right; color: darkred">
-                    <button class="btn btn-primary">Delete</button>
+                    <div class="col-sm-1">
+                    <a href="{% url 'comment:comment_delete' comment.id%}">
+                        <div style="scale: 60%; text-align: right">
+                        <button class="btn btn-primary">Delete</button>
+                        </div>
+                    </a>
                     </div>
-                </a>
-                </div>
-                </div>
+                    </div>
+                    {% endif %}
 
+                    <br><br>
 
-                <br><br>
+                {% endif %}
+
             {% endfor %}
 
+            {%  if user_login %}
             <a href="{% url 'comment:add-comment' movie.id%}" style="text-align: right">
                 <button class="btn btn-primary">Add Comment</button>
             </a>
+            {% endif %}
 
         </div>
 
     </div>
 
-    <div class="row">
-        <div class='m-5'>
-            <a href={% url 'edit_movie' movie.id%}>
-                <button class="btn btn-secondary">Edit Information</button>
-            </a>
+    {% if user_login %}
+        <div class="row">
+            <div class='m-5'>
+                <a href={% url 'edit_movie' movie.id%}>
+                    <button class="btn btn-secondary">Edit Information</button>
+                </a>
+            </div>
         </div>
-    </div>
+    {% endif %}
 
 
 

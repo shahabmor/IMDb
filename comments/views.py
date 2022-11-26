@@ -28,7 +28,8 @@ def add_comment(request, pk):
         content = {
             'movie': movie,
             'crew': movie.moviecrew_set.all(),
-            'comments': movie.comment.all(),
+            'comments': movie.comment.filter(is_valid=True),
+            'user_login': request.user.is_authenticated,
             "is_valid": True
         }
 
@@ -63,12 +64,76 @@ def movie_comments(request, pk):
         content = {
             'movie': movie,
             'crew': movie.moviecrew_set.all(),
-            'comments': movie.comment.all(),
+            'comments': movie.comment.filter(is_valid=True),
+            'user_login': request.user.is_authenticated,
             "is_valid": True
         }
 
         return render(request, 'movies/movie_detail.html', context=content)
 
 
-def movie_delete(request):
-    pass
+def comment_delete(request, pk):
+    comment = get_object_or_404(MovieComment, pk=pk, is_valid=True)
+    access = (request.user.username == comment.user.username)
+
+    if access:
+        comment.is_valid = False
+        comment.save()
+
+    ctx = {
+        'movie': comment.movie,
+        'crew': comment.movie.moviecrew_set.all(),
+        'comments': comment.movie.comment.filter(is_valid=True),
+        'user_login': request.user.is_authenticated,
+        "is_valid": True
+    }
+
+    return render(request, 'movies/movie_detail.html', context=ctx)
+
+
+def edit_comment(request, pk):
+
+    comment = get_object_or_404(MovieComment, pk=pk, is_valid=True)
+    movie = comment.movie
+
+    access = (request.user.username == comment.user.username)
+
+    if request.method == 'GET':
+        if access:
+            form = CommentForm(instance=comment)
+
+            ctx = {
+                'form': form,
+                'movie': movie,
+                'comment': comment,
+            }
+
+            return render(request, 'comments/edit_comment.html', context=ctx)
+
+        content = {
+            'movie': movie,
+            'crew': movie.moviecrew_set.all(),
+            'comments': movie.comment.filter(is_valid=True),
+            'user_login': request.user.is_authenticated,
+            "is_valid": True
+        }
+
+        return render(request, 'movies/movie_detail.html', context=content)
+
+    elif request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+
+        if form.is_valid():
+            comment.comment_body = form.cleaned_data.get('comment_body')
+            comment.save()
+
+        content = {
+            'movie': movie,
+            'crew': movie.moviecrew_set.all(),
+            'comments': movie.comment.filter(is_valid=True),
+            'user_login': request.user.is_authenticated,
+            "is_valid": True
+        }
+
+        return render(request, 'movies/movie_detail.html', context=content)
+
