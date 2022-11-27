@@ -1,3 +1,5 @@
+from account.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
@@ -77,3 +79,12 @@ class MovieCrew(models.Model):
 
     class Meta:
         unique_together = ('movie', 'crew', 'role')
+
+
+class RateMovie(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rate = models.SmallIntegerField(validators=[MinValueValidator(0), MaxValueValidator(10)])
+
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=('user', 'movie'), name='unique_user_movie')]

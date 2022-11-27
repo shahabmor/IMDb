@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from .models import *
 
 
@@ -12,3 +14,18 @@ class MovieForm(forms.ModelForm):
     class Meta:
         model = Movie
         fields = ('title', 'description', 'imdb_score', 'release_date', 'avatar')
+
+
+class RateMovieForm(forms.ModelForm):
+    class Meta:
+        model = RateMovie
+        fields = ('rate',)
+        widgets = {
+            'rate': forms.IntegerField(attrs={'class': 'form-control'})
+        }
+
+    def clean(self):
+        clean_data = super(RateMovieForm, self).clean()
+        if not clean_data.get('rate'):
+            raise ValidationError('rate field is empty')
+        return clean_data

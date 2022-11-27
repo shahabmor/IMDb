@@ -1,8 +1,10 @@
+from account.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 
 from .models import Movie
-from .forms import MovieForm
+from .forms import MovieForm, RateMovieForm
+
 
 # Create your views here.
 
@@ -102,8 +104,23 @@ def delete_movie(request, pk):
     return redirect('all_movies')
 
 
+def rate_movie(request, pk, rate=None):
+    movie = get_object_or_404(Movie, pk=pk, is_valid=True)
+    user = User.objects.get(username=request.user.username)
 
+    if request.method == 'GET':
+        form = RateMovieForm(instance=movie)
+        ctx = {
+            'form': form,
+            'movie': movie,
+        }
+        return render(request, 'rate.html', context=ctx)
 
+    elif request.method == 'POST':
+        form = RateMovieForm(request.POST, instance=movie)
 
-
-
+        if form.is_valid():
+            cd = form.cleaned_data.get('rate')
+            new_rate = RateMovieForm.objects.create(movie=movie, rate=cd, user=user)
+            rate.save()
+            

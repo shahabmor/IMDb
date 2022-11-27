@@ -4,6 +4,7 @@ from movies.models import Movie
 from .models import MovieComment
 from account.models import User
 
+
 def add_comment(request, pk):
     movie = get_object_or_404(Movie, pk=pk, is_valid=True)
     user = User.objects.get(username=request.user.username)
