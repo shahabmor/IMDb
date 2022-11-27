@@ -19,7 +19,7 @@ def add_comment(request, pk):
         return render(request, 'comments/add_comment.html', context=ctx)
 
     elif request.method == 'POST':
-        form = CommentForm(request.POST, instance=movie)
+        form = CommentForm(request.POST)
 
         if form.is_valid():
             cd = form.cleaned_data.get('comment_body')
@@ -37,40 +37,35 @@ def add_comment(request, pk):
         return render(request, 'movies/movie_detail.html', context=content)
 
 
-def movie_comments(request, pk):
-    the_comment = get_object_or_404(MovieComment, pk=pk, is_valid=True)
-    user = User.objects.get(username=request.user.username)
-    movie = the_comment.movie
+def reply_comment(request, pk):
+    parent_comment = get_object_or_404(MovieComment, pk=pk, is_valid=True)
+    movie = parent_comment.movie
+
+    form = None
 
     if request.method == 'GET':
         form = CommentForm()
 
-        ctx = {
-            'the_comment': the_comment,
-            'all_replies': [],
-            'form': form,
-            'movie': movie,
-        }
-
-        return render(request, 'comments/movie_comments.html', context=ctx)
-
-    elif request.method == 'POST':
+    elif request.method == "POST":
         form = CommentForm(request.POST)
 
         if form.is_valid():
-            cd = form.cleaned_data.get('comment_body')
-            reply = MovieComment.objects.create(movie=movie, comment_body=cd, user=user, parent=the_comment)
+            comment_body = form.cleaned_data.get('comment_body')
+            reply = MovieComment.objects.create(movie=movie,
+                                                user=request.user,
+                                                comment_body=comment_body,
+                                                parent=parent_comment
+                                                )
             reply.save()
 
-        content = {
-            'movie': movie,
-            'crew': movie.moviecrew_set.all(),
-            'comments': movie.comment.filter(is_valid=True),
-            'user_login': request.user.is_authenticated,
-            "is_valid": True
-        }
+    ctx = {
+        'parent_comment': parent_comment,
+        'all_replies': MovieComment.objects.filter(parent=parent_comment),
+        'form': form,
+        'movie': movie,
+    }
 
-        return render(request, 'movies/movie_detail.html', context=content)
+    return render(request, 'comments/reply_comment.html', context=ctx)
 
 
 def comment_delete(request, pk):
@@ -93,7 +88,6 @@ def comment_delete(request, pk):
 
 
 def edit_comment(request, pk):
-
     comment = get_object_or_404(MovieComment, pk=pk, is_valid=True)
     movie = comment.movie
 
@@ -137,4 +131,3 @@ def edit_comment(request, pk):
         }
 
         return render(request, 'movies/movie_detail.html', context=content)
-

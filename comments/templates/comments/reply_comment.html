@@ -7,27 +7,24 @@
 {% block body %}
 
     <div class="row m-1">
-    <div class=>
-        <h4>{{ the_comment.user.username }}</h4>
-        <p>{{ the_comment.comment_body }}</p>
-        <br>
     <div>
+        <h4>{{ parent_comment.user.username }}</h4>
+        <p>{{ parent_comment.comment_body }}</p>
+        <br>
+    </div>
     </div>
 
 
     <div class="row">
-    <div class="col">
         {% for reply in all_replies %}
             <hr>
             <h6>{{ reply.user.username }}:</h6><p>{{ reply.comment_body }}</p>
 
         {% endfor %}
     </div>
-    </div>
 
     <div class="row">
-
-        <form action="{% url 'comment:movie-comments' movie.id%}" method="post">
+        <form action="{% url 'comment:reply-comments' parent_comment.id %}" method="post">
         {% csrf_token %}
 
         <div style="scale: 90%">
@@ -36,15 +33,6 @@
         </div>
 
         </form>
-
-    </div>
-
-    </div>
-
-    <hr>
-
-    <div class="row">
-
 
     </div>
 

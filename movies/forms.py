@@ -21,7 +21,7 @@ class RateMovieForm(forms.ModelForm):
         model = RateMovie
         fields = ('rate',)
         widgets = {
-            'rate': forms.IntegerField(attrs={'class': 'form-control'})
+            'rate': forms.IntegerField()
         }
 
     def clean(self):

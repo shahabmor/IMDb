@@ -16,6 +16,6 @@ class CommentForm(forms.ModelForm):
     def clean(self):
         clean_data = super(CommentForm, self).clean()
         if not clean_data.get('comment_body'):
-            raise ValidationError('comment ody is empty')
+            raise ValidationError('comment body is empty')
 
         return clean_data
