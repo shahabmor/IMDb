@@ -24,6 +24,7 @@ def all_movies(request):
     movies = Movie.valid.all()
     content = {
         "movies": movies,
+        'user_login': request.user.is_authenticated,
         "is_valid": True
     }
 
@@ -46,8 +47,9 @@ def movie_detail(request, pk):
     movie = get_object_or_404(Movie, pk=pk, is_valid=True)
     content = {
         'movie': movie,
-        'comments': movie.comment.all(),
+        'comments': movie.comment.filter(is_valid=True),
         'crew': movie.moviecrew_set.all(),
+        'user_login': request.user.is_authenticated,
         "is_valid": True
     }
 

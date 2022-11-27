@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}edit_comment{% endblock %}
+{% block page_name %}Edit Comment{% endblock %}
+
+{% block body %}
+    <form action="{% url 'comment:edit_comment' comment.id%}" method="post" class="ml-3">
+        {% csrf_token %}
+        <div style="scale: 90%">
+        {{ form.as_p }}
+
+        <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+
+        </div>
+
+    </form>
+
+{% endblock %}
